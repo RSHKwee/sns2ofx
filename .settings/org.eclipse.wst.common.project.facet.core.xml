@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faceted-project>
+  <runtime name="zulu-17"/>
+  <fixed facet="java"/>
+  <fixed facet="jpt.jaxb"/>
+  <installed facet="java" version="17"/>
+  <installed facet="jpt.jaxb" version="2.2"/>
+</faceted-project>

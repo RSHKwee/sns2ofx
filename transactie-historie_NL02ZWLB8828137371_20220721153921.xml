@@ -1,0 +1,1367 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.02">
+    <BkToCstmrStmt>
+        <GrpHdr>
+            <MsgId>CAMT053SNS000000000002</MsgId>
+            <CreDtTm>2022-07-21T15:39:19.160745+02:00</CreDtTm>
+        </GrpHdr>
+        <Stmt>
+            <Id>CAMT05300000000000200001</Id>
+            <ElctrncSeqNb>22202</ElctrncSeqNb>
+            <CreDtTm>2022-07-21T15:39:19.258822+02:00</CreDtTm>
+            <Acct>
+                <Id>
+                    <IBAN>NL02ZWLB8828137371</IBAN>
+                </Id>
+                <Ccy>EUR</Ccy>
+                <Svcr>
+                    <FinInstnId>
+                        <BIC>SNSBNL2A</BIC>
+                    </FinInstnId>
+                </Svcr>
+            </Acct>
+            <Bal>
+                <Tp>
+                    <CdOrPrtry>
+                        <Cd>OPBD</Cd>
+                    </CdOrPrtry>
+                </Tp>
+                <Amt Ccy="EUR">17624.76</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Dt>
+                    <Dt>2022-01-05</Dt>
+                </Dt>
+            </Bal>
+            <Bal>
+                <Tp>
+                    <CdOrPrtry>
+                        <Cd>CLBD</Cd>
+                    </CdOrPrtry>
+                </Tp>
+                <Amt Ccy="EUR">18225.77</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Dt>
+                    <Dt>2022-07-11</Dt>
+                </Dt>
+            </Bal>
+            <Ntry>
+                <NtryRef>20220711-11482765</NtryRef>
+                <Amt Ccy="EUR">19000</Amt>
+                <CdtDbtInd>DBIT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-11</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-11</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>9932</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>IPI1544079300092192100700001</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Cdtr>
+<Nm>KWEE</Nm>
+                            </Cdtr>
+                            <CdtrAcct>
+<Id>
+    <IBAN>NL65INGB0001845439</IBAN>
+</Id>
+                            </CdtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <CdtrAgt>
+<FinInstnId>
+    <BIC>INGBNL2AXXX</BIC>
+</FinInstnId>
+                            </CdtrAgt>
+                        </RltdAgts>
+                        <RmtInf>
+                            <Ustrd>Herverdelen</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220705-11995577</NtryRef>
+                <Amt Ccy="EUR">15000</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-05</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-05</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>8949</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <InstrId>INNDNL2U2022070500035021700000001</InstrId>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>CPUAW7D7ATZ9IDB7PRJCE6J5N2U2</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Dbtr>
+<Nm>Hr ir RSH Kwee</Nm>
+                            </Dbtr>
+                            <DbtrAcct>
+<Id>
+    <IBAN>NL65INGB0001845439</IBAN>
+</Id>
+                            </DbtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <DbtrAgt>
+<FinInstnId>
+    <BIC>INGBNL2A</BIC>
+</FinInstnId>
+                            </DbtrAgt>
+                        </RltdAgts>
+                        <RmtInf>
+                            <Ustrd>Appeltje</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220705-10369598</NtryRef>
+                <Amt Ccy="EUR">0.14</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-05</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-01</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>6607</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <RmtInf>
+                            <Ustrd>Rente over positief saldo       tot 01-07-22</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220704-11055907</NtryRef>
+                <Amt Ccy="EUR">4000</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-04</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-04</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>8949</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <InstrId>INNDNL2U2022070400140024600000001</InstrId>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>CPU8S3WJI2UH7166NOO71YJJRXWT</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Dbtr>
+<Nm>Hr ir RSH Kwee</Nm>
+                            </Dbtr>
+                            <DbtrAcct>
+<Id>
+    <IBAN>NL65INGB0001845439</IBAN>
+</Id>
+                            </DbtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <DbtrAgt>
+<FinInstnId>
+    <BIC>INGBNL2A</BIC>
+</FinInstnId>
+                            </DbtrAgt>
+                        </RltdAgts>
+                        <RmtInf>
+                            <Ustrd>NL65INGB0001845439-Hr ir RSH Kwee</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220622-10340392</NtryRef>
+                <Amt Ccy="EUR">100</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-06-22</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-06-22</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>8809</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <InstrId>INNDNL2U20220622000070500005377</InstrId>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>CPU58EBVK21GISGE9C9KALM10DIZ</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Dbtr>
+<Nm>Hr R S H Kwee e/o Mw W J M Kwee-Zuiderwijk</Nm>
+                            </Dbtr>
+                            <DbtrAcct>
+<Id>
+    <IBAN>NL52INGB0003157113</IBAN>
+</Id>
+                            </DbtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <DbtrAgt>
+<FinInstnId>
+    <BIC>INGBNL2A</BIC>
+</FinInstnId>
+                            </DbtrAgt>
+                        </RltdAgts>
+                        <RmtInf>
+                            <Ustrd>Sparen Corianne</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220605-10381264</NtryRef>
+                <Amt Ccy="EUR">0.15</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-06-05</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-06-01</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>6607</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <RmtInf>
+                            <Ustrd>Rente over positief saldo       tot 01-06-22</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220523-10902605</NtryRef>
+                <Amt Ccy="EUR">100</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-05-23</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-05-23</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>8809</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <InstrId>INNDNL2U20230522000109910031667</InstrId>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>CPU6LZZK6FM64RS9GR4D36FYO5L9</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Dbtr>
+<Nm>Hr R S H Kwee e/o Mw W J M Kwee-Zuiderwijk</Nm>
+                            </Dbtr>
+                            <DbtrAcct>
+<Id>
+    <IBAN>NL52INGB0003157113</IBAN>
+</Id>
+                            </DbtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <DbtrAgt>
+<FinInstnId>
+    <BIC>INGBNL2A</BIC>
+</FinInstnId>
+                            </DbtrAgt>
+                        </RltdAgts>
+                        <RmtInf>
+                            <Ustrd>Sparen Corianne</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220505-10385812</NtryRef>
+                <Amt Ccy="EUR">0.14</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-05-05</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-05-01</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>6607</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <RmtInf>
+                            <Ustrd>Rente over positief saldo       tot 01-05-22</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220422-10413814</NtryRef>
+                <Amt Ccy="EUR">100</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-04-22</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-04-22</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>8809</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <InstrId>INNDNL2U20220422000116510020863</InstrId>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>CPU7RAYEXZMP5CKDKW1U9719R0OZ</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Dbtr>
+<Nm>Hr R S H Kwee e/o Mw W J M Kwee-Zuiderwijk</Nm>
+                            </Dbtr>
+                            <DbtrAcct>
+<Id>
+    <IBAN>NL52INGB0003157113</IBAN>
+</Id>
+                            </DbtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <DbtrAgt>
+<FinInstnId>
+    <BIC>INGBNL2A</BIC>
+</FinInstnId>
+                            </DbtrAgt>
+                        </RltdAgts>
+                        <RmtInf>
+                            <Ustrd>Sparen Corianne</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220405-10280434</NtryRef>
+                <Amt Ccy="EUR">0.15</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-04-05</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-04-01</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>6607</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <RmtInf>
+                            <Ustrd>Rente over positief saldo       tot 01-04-22</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220322-10303540</NtryRef>
+                <Amt Ccy="EUR">100</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-03-22</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-03-22</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>8809</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <InstrId>INNDNL2U20220322000065000019961</InstrId>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>CPUDDQJYPWOXQ7VYENDEL2JLTG6S</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Dbtr>
+<Nm>Hr R S H Kwee e/o Mw W J M Kwee-Zuiderwijk</Nm>
+                            </Dbtr>
+                            <DbtrAcct>
+<Id>
+    <IBAN>NL52INGB0003157113</IBAN>
+</Id>
+                            </DbtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <DbtrAgt>
+<FinInstnId>
+    <BIC>INGBNL2A</BIC>
+</FinInstnId>
+                            </DbtrAgt>
+                        </RltdAgts>
+                        <RmtInf>
+                            <Ustrd>Sparen Corianne</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220305-10398225</NtryRef>
+                <Amt Ccy="EUR">0.13</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-03-05</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-03-01</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>6607</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <RmtInf>
+                            <Ustrd>Rente over positief saldo       tot 01-03-22</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220222-10280205</NtryRef>
+                <Amt Ccy="EUR">100</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-02-22</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-02-22</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>8809</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <InstrId>INNDNL2U20220222000066500019712</InstrId>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>CPU9VY83HNH7264O89I2IW31O8KP</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Dbtr>
+<Nm>Hr R S H Kwee e/o Mw W J M Kwee-Zuiderwijk</Nm>
+                            </Dbtr>
+                            <DbtrAcct>
+<Id>
+    <IBAN>NL52INGB0003157113</IBAN>
+</Id>
+                            </DbtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <DbtrAgt>
+<FinInstnId>
+    <BIC>INGBNL2A</BIC>
+</FinInstnId>
+                            </DbtrAgt>
+                        </RltdAgts>
+                        <RmtInf>
+                            <Ustrd>Sparen Corianne</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220205-10391437</NtryRef>
+                <Amt Ccy="EUR">0.15</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-02-05</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-02-01</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>6607</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <RmtInf>
+                            <Ustrd>Rente over positief saldo       tot 01-02-22</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220124-10329193</NtryRef>
+                <Amt Ccy="EUR">100</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-01-24</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-01-24</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>8809</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <InstrId>INNDNL2U20240122000121400017228</InstrId>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>CPU3XIDREF83BJEN09CRZNI28XQ9</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Dbtr>
+<Nm>Hr R S H Kwee e/o Mw W J M Kwee-Zuiderwijk</Nm>
+                            </Dbtr>
+                            <DbtrAcct>
+<Id>
+    <IBAN>NL52INGB0003157113</IBAN>
+</Id>
+                            </DbtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <DbtrAgt>
+<FinInstnId>
+    <BIC>INGBNL2A</BIC>
+</FinInstnId>
+                            </DbtrAgt>
+                        </RltdAgts>
+                        <RmtInf>
+                            <Ustrd>Sparen Corianne</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220105-10168907</NtryRef>
+                <Amt Ccy="EUR">0.15</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-01-05</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-01-01</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>6607</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <RmtInf>
+                            <Ustrd>Rente over positief saldo       tot 01-01-22</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+        </Stmt>
+        <Stmt>
+            <Id>CAMT05300000000000200002</Id>
+            <ElctrncSeqNb>22202</ElctrncSeqNb>
+            <CreDtTm>2022-07-21T15:39:19.355859+02:00</CreDtTm>
+            <Acct>
+                <Id>
+                    <IBAN>NL83SNSB8839185550</IBAN>
+                </Id>
+                <Ccy>EUR</Ccy>
+                <Svcr>
+                    <FinInstnId>
+                        <BIC>SNSBNL2A</BIC>
+                    </FinInstnId>
+                </Svcr>
+            </Acct>
+            <Bal>
+                <Tp>
+                    <CdOrPrtry>
+                        <Cd>OPBD</Cd>
+                    </CdOrPrtry>
+                </Tp>
+                <Amt Ccy="EUR">0</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Dt>
+                    <Dt>2022-07-13</Dt>
+                </Dt>
+            </Bal>
+            <Bal>
+                <Tp>
+                    <CdOrPrtry>
+                        <Cd>CLBD</Cd>
+                    </CdOrPrtry>
+                </Tp>
+                <Amt Ccy="EUR">249.25</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Dt>
+                    <Dt>2022-07-20</Dt>
+                </Dt>
+            </Bal>
+            <Ntry>
+                <NtryRef>20220720-1844447</NtryRef>
+                <Amt Ccy="EUR">20000</Amt>
+                <CdtDbtInd>DBIT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-20</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-20</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>3754</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>SIT202207200375401844447</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Cdtr>
+<Nm>RSH Kwee</Nm>
+                            </Cdtr>
+                            <CdtrAcct>
+<Id>
+    <IBAN>NL37SNSB8839210822</IBAN>
+</Id>
+                            </CdtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <CdtrAgt>
+<FinInstnId>
+    <BIC>SNSBNL2AXXX</BIC>
+</FinInstnId>
+                            </CdtrAgt>
+                        </RltdAgts>
+                        <RmtInf/>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220720-1841600</NtryRef>
+                <Amt Ccy="EUR">20000</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-20</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-20</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>8949</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <InstrId>INNDNL2U2022072000160111800000001</InstrId>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>CPUCIX0HKXF331IY5R4P3UQPYH9V</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Dbtr>
+<Nm>Hr ir RSH Kwee</Nm>
+                            </Dbtr>
+                            <DbtrAcct>
+<Id>
+    <IBAN>NL65INGB0001845439</IBAN>
+</Id>
+                            </DbtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <DbtrAgt>
+<FinInstnId>
+    <BIC>INGBNL2A</BIC>
+</FinInstnId>
+                            </DbtrAgt>
+                        </RltdAgts>
+                        <RmtInf>
+                            <Ustrd>NL65INGB0001845439-Hr ir RSH Kwee</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220720-210183</NtryRef>
+                <Amt Ccy="EUR">8750</Amt>
+                <CdtDbtInd>DBIT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-20</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-20</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>3754</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>SIT202207200375400210183</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Cdtr>
+<Nm>RSH Kwee</Nm>
+                            </Cdtr>
+                            <CdtrAcct>
+<Id>
+    <IBAN>NL37SNSB8839210822</IBAN>
+</Id>
+                            </CdtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <CdtrAgt>
+<FinInstnId>
+    <BIC>SNSBNL2AXXX</BIC>
+</FinInstnId>
+                            </CdtrAgt>
+                        </RltdAgts>
+                        <RmtInf/>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220720-209650</NtryRef>
+                <Amt Ccy="EUR">8750</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-20</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-20</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>8949</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <InstrId>INNDNL2U2022072000037446800000001</InstrId>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>CPUC5T57LR9A5JNZWAAKH5A0BMG2</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Dbtr>
+<Nm>Hr ir RSH Kwee</Nm>
+                            </Dbtr>
+                            <DbtrAcct>
+<Id>
+    <IBAN>NL65INGB0001845439</IBAN>
+</Id>
+                            </DbtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <DbtrAgt>
+<FinInstnId>
+    <BIC>INGBNL2A</BIC>
+</FinInstnId>
+                            </DbtrAgt>
+                        </RltdAgts>
+                        <RmtInf>
+                            <Ustrd>NL65INGB0001845439-Hr ir RSH Kwee</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220719-1217934</NtryRef>
+                <Amt Ccy="EUR">1250</Amt>
+                <CdtDbtInd>DBIT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-19</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-19</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>3754</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>SIT202207190375401217934</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Cdtr>
+<Nm>RSH Kwee</Nm>
+                            </Cdtr>
+                            <CdtrAcct>
+<Id>
+    <IBAN>NL37SNSB8839210822</IBAN>
+</Id>
+                            </CdtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <CdtrAgt>
+<FinInstnId>
+    <BIC>SNSBNL2AXXX</BIC>
+</FinInstnId>
+                            </CdtrAgt>
+                        </RltdAgts>
+                        <RmtInf>
+                            <Ustrd>Eerste inleg</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220719-1214444</NtryRef>
+                <Amt Ccy="EUR">1250</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-19</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-19</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>8949</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <InstrId>INNDNL2U2022071900125488200000001</InstrId>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>CPU601AVVLC6RIDTPLCVRRM7BK0E</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Dbtr>
+<Nm>Hr ir RSH Kwee</Nm>
+                            </Dbtr>
+                            <DbtrAcct>
+<Id>
+    <IBAN>NL65INGB0001845439</IBAN>
+</Id>
+                            </DbtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <DbtrAgt>
+<FinInstnId>
+    <BIC>INGBNL2A</BIC>
+</FinInstnId>
+                            </DbtrAgt>
+                        </RltdAgts>
+                        <RmtInf>
+                            <Ustrd>Eerste inleg</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220719-563315</NtryRef>
+                <Amt Ccy="EUR">0.75</Amt>
+                <CdtDbtInd>DBIT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-19</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-19</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>7913</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <TxId>M0A867/011968</TxId>
+                        </Refs>
+                        <RmtInf>
+                            <Ustrd>Parkeren Nijkerk      &gt;NIJKERK G19.07.2022 11U07 KV005 392R66   MCC:7523                      NLNEDERLAND</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220714-930412</NtryRef>
+                <Amt Ccy="EUR">250</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-14</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-14</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>8949</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <InstrId>INNDNL2U2022071400094679400000001</InstrId>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>CPU4N96H7JMI5KHVFF6D71GBGZ9D</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Dbtr>
+<Nm>Hr ir RSH Kwee</Nm>
+                            </Dbtr>
+                            <DbtrAcct>
+<Id>
+    <IBAN>NL65INGB0001845439</IBAN>
+</Id>
+                            </DbtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <DbtrAgt>
+<FinInstnId>
+    <BIC>INGBNL2A</BIC>
+</FinInstnId>
+                            </DbtrAgt>
+                        </RltdAgts>
+                        <RmtInf>
+                            <Ustrd>NL65INGB0001845439-Hr ir RSH Kwee</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220714-91031</NtryRef>
+                <Amt Ccy="EUR">0</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-13</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-13</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>6305</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <RmtInf>
+                            <Ustrd>VOOR KWEE R S H                 IS EEN SNS WERELDPAS   (NR 0005)AANGEMAAKT. DEZE HEBBEN WE PER  POST TOEGESTUURD. ALS DE        BETAALPAS BINNEN 3 WERKDAGEN    NA ONTVANGST VAN DIT BERICHT    NOG NIET IS BEZORGD,            BEL DAN 030 - 633 30 00.</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+        </Stmt>
+        <Stmt>
+            <Id>CAMT05300000000000200003</Id>
+            <ElctrncSeqNb>22202</ElctrncSeqNb>
+            <CreDtTm>2022-07-21T15:39:19.467286+02:00</CreDtTm>
+            <Acct>
+                <Id>
+                    <IBAN>NL37SNSB8839210822</IBAN>
+                </Id>
+                <Ccy>EUR</Ccy>
+                <Svcr>
+                    <FinInstnId>
+                        <BIC>SNSBNL2A</BIC>
+                    </FinInstnId>
+                </Svcr>
+            </Acct>
+            <Bal>
+                <Tp>
+                    <CdOrPrtry>
+                        <Cd>OPBD</Cd>
+                    </CdOrPrtry>
+                </Tp>
+                <Amt Ccy="EUR">0</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Dt>
+                    <Dt>2022-07-19</Dt>
+                </Dt>
+            </Bal>
+            <Bal>
+                <Tp>
+                    <CdOrPrtry>
+                        <Cd>CLBD</Cd>
+                    </CdOrPrtry>
+                </Tp>
+                <Amt Ccy="EUR">0</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Dt>
+                    <Dt>2022-07-21</Dt>
+                </Dt>
+            </Bal>
+            <Ntry>
+                <NtryRef>20220721-20904208</NtryRef>
+                <Amt Ccy="EUR">5000</Amt>
+                <CdtDbtInd>DBIT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-21</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-25</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>9200</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <RmtInf>
+                            <Ustrd>Voor u gekocht via Euronext Fund Services: 93,5979 Participaties ASN Duurzaam Mixfonds Defensief a EUR 53,42. Valutadatum:      25/07/2022. Positie na          transactie: 93,5979 ASN Duurzaam Mixfonds Defensief. (Trans.nr. 19783105)</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220721-20884786</NtryRef>
+                <Amt Ccy="EUR">15000</Amt>
+                <CdtDbtInd>DBIT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-21</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-25</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>9200</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <RmtInf>
+                            <Ustrd>Voor u gekocht via Euronext Fund Services: 257,2458             Participaties ASN Duurzaam      Mixfonds Neutraal a EUR 58,31.  Valutadatum: 25/07/2022. Positie na transactie: 428,8427 ASN    Duurzaam Mixfonds Neutraal.     (Trans.nr. 19782876)</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220721-20884545</NtryRef>
+                <Amt Ccy="EUR">8750</Amt>
+                <CdtDbtInd>DBIT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-21</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-25</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>9200</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <RmtInf>
+                            <Ustrd>Voor u gekocht via Euronext Fund Services: 150,0600             Participaties ASN Duurzaam      Mixfonds Neutraal a EUR 58,31.  Valutadatum: 25/07/2022. Positie na transactie: 428,8427 ASN    Duurzaam Mixfonds Neutraal.     (Trans.nr. 19782829)</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220720-21844446</NtryRef>
+                <Amt Ccy="EUR">20000</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-20</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-20</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>2754</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>SIT202207200275401844446</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Dbtr>
+<Nm>KWEE R S H</Nm>
+                            </Dbtr>
+                            <DbtrAcct>
+<Id>
+    <IBAN>NL83SNSB8839185550</IBAN>
+</Id>
+                            </DbtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <DbtrAgt>
+<FinInstnId>
+    <BIC>SNSBNL2AXXX</BIC>
+</FinInstnId>
+                            </DbtrAgt>
+                        </RltdAgts>
+                        <RmtInf/>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220720-20958343</NtryRef>
+                <Amt Ccy="EUR">1250</Amt>
+                <CdtDbtInd>DBIT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-20</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-22</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>9200</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <RmtInf>
+                            <Ustrd>Voor u gekocht via Euronext Fund Services: 21,5369 Participaties ASN Duurzaam Mixfonds Neutraal a EUR 58,04. Valutadatum:       22/07/2022. Positie na          transactie: 21,5369 ASN Duurzaam Mixfonds Neutraal. (Trans.nr.  19775789)</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220720-20210182</NtryRef>
+                <Amt Ccy="EUR">8750</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-20</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-20</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>2754</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>SIT202207200275400210182</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Dbtr>
+<Nm>KWEE R S H</Nm>
+                            </Dbtr>
+                            <DbtrAcct>
+<Id>
+    <IBAN>NL83SNSB8839185550</IBAN>
+</Id>
+                            </DbtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <DbtrAgt>
+<FinInstnId>
+    <BIC>SNSBNL2AXXX</BIC>
+</FinInstnId>
+                            </DbtrAgt>
+                        </RltdAgts>
+                        <RmtInf/>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+            <Ntry>
+                <NtryRef>20220719-21217933</NtryRef>
+                <Amt Ccy="EUR">1250</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <RvslInd>false</RvslInd>
+                <Sts>BOOK</Sts>
+                <BookgDt>
+                    <Dt>2022-07-19</Dt>
+                </BookgDt>
+                <ValDt>
+                    <Dt>2022-07-19</Dt>
+                </ValDt>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>2754</Cd>
+                        <Issr>SNSBANK</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <Refs>
+                            <EndToEndId>NOTPROVIDED</EndToEndId>
+                            <TxId>SIT202207190275401217933</TxId>
+                        </Refs>
+                        <RltdPties>
+                            <Dbtr>
+<Nm>KWEE R S H</Nm>
+                            </Dbtr>
+                            <DbtrAcct>
+<Id>
+    <IBAN>NL83SNSB8839185550</IBAN>
+</Id>
+                            </DbtrAcct>
+                        </RltdPties>
+                        <RltdAgts>
+                            <DbtrAgt>
+<FinInstnId>
+    <BIC>SNSBNL2AXXX</BIC>
+</FinInstnId>
+                            </DbtrAgt>
+                        </RltdAgts>
+                        <RmtInf>
+                            <Ustrd>Eerste inleg</Ustrd>
+                        </RmtInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
+        </Stmt>
+    </BkToCstmrStmt>
+</Document>
