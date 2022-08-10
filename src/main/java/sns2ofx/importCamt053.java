@@ -30,8 +30,18 @@ public class importCamt053 {
 
       // Get all statements (usually one per bank statement)
       for (AccountStatement2 accountStatement2 : accountStatement2List) {
+        System.out
+            .println("Balance on " + accountStatement2.getBal().get(0).getDt().getDt().toGregorianCalendar().getTime()
+                + " : " + accountStatement2.getBal().get(0).getAmt().getValue() + " "
+                + accountStatement2.getBal().get(0).getAmt().getCcy()); // Get a list of all payment entries
+        System.out
+            .println("Balance on " + accountStatement2.getBal().get(1).getDt().getDt().toGregorianCalendar().getTime()
+                + " : " + accountStatement2.getBal().get(1).getAmt().getValue() + " "
+                + accountStatement2.getBal().get(1).getAmt().getCcy()); // Get a list of all payment entries
+        for (int i = 0; i < 80; i++)
+          System.out.print("-");
+        System.out.println();
 
-        // Get a list of all payment entries
         for (ReportEntry2 reportEntry2 : accountStatement2.getNtry()) {
           System.out.println("Credit or debit: " + reportEntry2.getCdtDbtInd());
           System.out.println("Booking date: " + reportEntry2.getBookgDt().getDt().toGregorianCalendar().getTime());
