@@ -17,19 +17,13 @@ public class importCamt053 {
     try {
       FileInputStream fileInputStream = new FileInputStream(new File(CAMT053FILENAME));
       Document camt053Document = camt053Parser.parse(fileInputStream);
-
-      System.out.println("Bank statement sequence number: "
-          + camt053Document.getBkToCstmrStmt().getStmt().get(0).getElctrncSeqNb().intValue());
-      System.out.println("Bank statement account IBAN: "
-          + camt053Document.getBkToCstmrStmt().getStmt().get(0).getAcct().getId().getIBAN());
-      for (int i = 0; i < 80; i++)
-        System.out.print("-");
-      System.out.println();
-
       List<AccountStatement2> accountStatement2List = camt053Document.getBkToCstmrStmt().getStmt();
 
       // Get all statements (usually one per bank statement)
       for (AccountStatement2 accountStatement2 : accountStatement2List) {
+        System.out.println("Bank statement sequence number: " + accountStatement2.getElctrncSeqNb());
+        System.out.println("Bank statement account IBAN: " + accountStatement2.getAcct().getId().getIBAN());
+
         System.out
             .println("Balance on " + accountStatement2.getBal().get(0).getDt().getDt().toGregorianCalendar().getTime()
                 + " : " + accountStatement2.getBal().get(0).getAmt().getValue() + " "
