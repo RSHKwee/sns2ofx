@@ -86,6 +86,15 @@ public class SnsTransactions {
         });
 
         for (ReportEntry2 reportEntry2 : accountStatement2.getNtry()) {
+          OfxTransaction l_ofxtrans = new OfxTransaction();
+          if (CreditDebitCode.DBIT == reportEntry2.getCdtDbtInd()) {
+            l_ofxtrans.setTrntype("Bij");
+          }
+          if (CreditDebitCode.CRDT == reportEntry2.getCdtDbtInd()) {
+            l_ofxtrans.setTrntype("Af");
+          }
+          l_ofxtrans.setDtposted(reportEntry2.getBookgDt().getDt().toGregorianCalendar().getTime().toString());
+
           System.out.println("Credit or debit: " + reportEntry2.getCdtDbtInd());
           System.out.println("Booking date: " + reportEntry2.getBookgDt().getDt().toGregorianCalendar().getTime());
 
@@ -96,24 +105,33 @@ public class SnsTransactions {
             // This is NOT a batch, but individual payments
             try {
               if (entryDetails1.getBtch() == null) {
-                OfxTransaction l_ofxtrans = new OfxTransaction();
 
                 if (CreditDebitCode.DBIT == reportEntry2.getCdtDbtInd()) {
                   // Outgoing (debit) payments, show recipient (creditors) information, money was
                   // transferred from the bank (debtor) to a client (creditor)
-                  l_ofxtrans.setTrnamt(
-                      entryDetails1.getTxDtls().get(0).getAmtDtls().getTxAmt().getAmt().getValue().toString());
 
-                  System.out
-                      .println("Creditor name: " + entryDetails1.getTxDtls().get(0).getRltdPties().getCdtr().getNm());
+                  String l_name = "";
+                  if (entryDetails1.getTxDtls().get(0).getRltdPties() != null) {
+                    l_name = entryDetails1.getTxDtls().get(0).getRltdPties().getCdtr().getNm();
+                    System.out
+                        .println("Creditor name: " + entryDetails1.getTxDtls().get(0).getRltdPties().getCdtr().getNm());
+                  }
+                  l_ofxtrans.setName(l_name);
                   System.out.println("Creditor IBAN: "
                       + entryDetails1.getTxDtls().get(0).getRltdPties().getCdtrAcct().getId().getIBAN());
+
                   System.out.println("Creditor remittance information (payment description): " + entryDetails1
                       .getTxDtls().get(0).getRmtInf().getUstrd().stream().collect(Collectors.joining(",")));
                   System.out.println(
                       "Report amount: " + reportEntry2.getAmt().getValue() + " " + reportEntry2.getAmt().getCcy());
-                  System.out.println("Creditor amount: "
-                      + entryDetails1.getTxDtls().get(0).getAmtDtls().getTxAmt().getAmt().getValue());
+
+                  l_ofxtrans.setTrnamt(reportEntry2.getAmt().getValue().toString());
+
+                  l_ofxtrans.setAccountto(l_IBANNr);
+                  l_ofxtrans.setTrntype("bij");
+                  l_ofxtrans.setMemo(entryDetails1.getTxDtls().get(0).getRmtInf().getUstrd().stream()
+                      .collect(Collectors.joining(",")));
+                  m_OfxTransactions.add(l_ofxtrans);
                 }
                 if (CreditDebitCode.CRDT == reportEntry2.getCdtDbtInd()) {
                   // Incoming (credit) payments, show origin (debtor) information, money was
@@ -126,8 +144,14 @@ public class SnsTransactions {
                       .get(0).getRmtInf().getUstrd().stream().collect(Collectors.joining(",")));
                   System.out.println(
                       "Report amount: " + reportEntry2.getAmt().getValue() + " " + reportEntry2.getAmt().getCcy());
-                  System.out.println(
-                      "Debtor amount: " + entryDetails1.getTxDtls().get(0).getAmtDtls().getTxAmt().getAmt().getValue());
+
+                  l_ofxtrans.setTrnamt(reportEntry2.getAmt().getValue().toString());
+                  l_ofxtrans.setName(entryDetails1.getTxDtls().get(0).getRltdPties().getDbtr().getNm());
+                  l_ofxtrans.setAccountto(l_IBANNr);
+                  l_ofxtrans.setTrntype("af");
+                  l_ofxtrans.setMemo(entryDetails1.getTxDtls().get(0).getRmtInf().getUstrd().stream()
+                      .collect(Collectors.joining(",")));
+                  m_OfxTransactions.add(l_ofxtrans);
                 }
 
               } else {
@@ -148,57 +172,14 @@ public class SnsTransactions {
                 }
               }
             } catch (Exception e) {
-
+              System.out.println(e.getMessage());
             }
-            for (int i = 0; i < 80; i++)
-              System.out.print("-");
-            System.out.println();
           }
         }
       }
-
     } catch (Exception e) {
       LOGGER.log(Level.INFO, e.getMessage());
     }
-
-    if (m_saving) {
-      // HeaderColumnNameMappingStrategy<IngSavingTransaction> beanStrategy = new
-      // HeaderColumnNameMappingStrategy<IngSavingTransaction>();
-      // beanStrategy.setType(IngSavingTransaction.class);
-      // m_SavingTransactions = new CsvToBeanBuilder<IngSavingTransaction>(new
-      // FileReader(m_File))
-      // .withSeparator(m_separator).withMappingStrategy(beanStrategy).build().parse();
-      m_Transactions = null;
-
-//        m_SavingTransactions.forEach(l_trans -> {
-      OfxTransaction l_ofxtrans;
-//          l_ofxtrans = Ing2OfxTransaction.convertSavingToOfx(l_trans);
-//          l_ofxtrans.setFitid(createUniqueId(l_ofxtrans));
-//          if (m_metainfo.containsKey(l_ofxtrans.getAccount())) {
-//          updateOfxMetaInfo(l_ofxtrans, l_trans.getSaldo_na_mutatie());
-    } else {
-//            createOfxMetaInfo(l_ofxtrans, l_trans.getSaldo_na_mutatie());
-    }
-//          m_OfxTransactions.add(l_ofxtrans);
-//        });
-//      } else {
-//        HeaderColumnNameMappingStrategy<IngTransaction> beanStrategy = new HeaderColumnNameMappingStrategy<IngTransaction>();
-//        beanStrategy.setType(IngTransaction.class);
-//        m_Transactions = new CsvToBeanBuilder<IngTransaction>(new FileReader(m_File)).withSeparator(m_separator)
-//            .withMappingStrategy(beanStrategy).build().parse();
-//        m_SavingTransactions = null;
-
-    m_Transactions.forEach(l_trans -> {
-      OfxTransaction l_ofxtrans;
-//          l_ofxtrans = Ing2OfxTransaction.convertToOfx(l_trans);
-//          l_ofxtrans.setFitid(createUniqueId(l_ofxtrans));
-//          if (m_metainfo.containsKey(l_ofxtrans.getAccount())) {
-//            updateOfxMetaInfo(l_ofxtrans, l_trans.getSaldo_na_mutatie());
-//          } else {
-//            createOfxMetaInfo(l_ofxtrans, l_trans.getSaldo_na_mutatie());
-//          }
-      // m_OfxTransactions.add(l_ofxtrans);
-    });
   }
 
   /**

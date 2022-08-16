@@ -6,6 +6,7 @@ import camt053parser.model.*;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,7 +14,7 @@ public class importCamt053 {
   public static void main(String[] args) {
     Camt053Parser camt053Parser = new Camt053Parser();
     // final String CAMT053FILENAME = "camt053file.xml";
-    final String CAMT053FILENAME = "D:\\Dev\\Github\\sns2ofx\\transactie-historie_NL02ZWLB8828137371_20220721153921.xml";
+    final String CAMT053FILENAME = "D:\\Users\\René\\OneDrive\\Documenten\\Administraties\\csv\\transactie-historie_NL02ZWLB8828137371_20220721153921.xml";
     try {
       FileInputStream fileInputStream = new FileInputStream(new File(CAMT053FILENAME));
       Document camt053Document = camt053Parser.parse(fileInputStream);
@@ -27,11 +28,13 @@ public class importCamt053 {
         System.out
             .println("Balance on " + accountStatement2.getBal().get(0).getDt().getDt().toGregorianCalendar().getTime()
                 + " : " + accountStatement2.getBal().get(0).getAmt().getValue() + " "
-                + accountStatement2.getBal().get(0).getAmt().getCcy()); // Get a list of all payment entries
+                + accountStatement2.getBal().get(0).getAmt().getCcy());
+        // Get a list of all payment entries
         System.out
             .println("Balance on " + accountStatement2.getBal().get(1).getDt().getDt().toGregorianCalendar().getTime()
                 + " : " + accountStatement2.getBal().get(1).getAmt().getValue() + " "
-                + accountStatement2.getBal().get(1).getAmt().getCcy()); // Get a list of all payment entries
+                + accountStatement2.getBal().get(1).getAmt().getCcy());
+        // Get a list of all payment entries
         for (int i = 0; i < 80; i++)
           System.out.print("-");
         System.out.println();
@@ -39,6 +42,8 @@ public class importCamt053 {
         for (ReportEntry2 reportEntry2 : accountStatement2.getNtry()) {
           System.out.println("Credit or debit: " + reportEntry2.getCdtDbtInd());
           System.out.println("Booking date: " + reportEntry2.getBookgDt().getDt().toGregorianCalendar().getTime());
+          Date l_balDate = reportEntry2.getBookgDt().getDt().toGregorianCalendar().getTime();
+          // String ls_Date = ;
 
           List<EntryDetails1> entryDetails1List = reportEntry2.getNtryDtls();
 
@@ -75,7 +80,6 @@ public class importCamt053 {
                   System.out.println(
                       "Debtor amount: " + entryDetails1.getTxDtls().get(0).getAmtDtls().getTxAmt().getAmt().getValue());
                 }
-
               } else {
                 // This is an entry about an outgoing batch payment
                 if (CreditDebitCode.DBIT == reportEntry2.getCdtDbtInd()) {
@@ -94,7 +98,7 @@ public class importCamt053 {
                 }
               }
             } catch (Exception e) {
-
+              System.out.print(e.getMessage());
             }
             for (int i = 0; i < 80; i++)
               System.out.print("-");

@@ -23,7 +23,7 @@ import snsLibrary.SnsTransaction;
 
 public class OfxTransactions {
   private static final Logger LOGGER = Logger.getLogger(Class.class.getName());
-  private String C_BankCode = "INGBNL2A";
+  private String C_BankCode = "SNSBNL2A";
 
   private List<OfxTransaction> m_OfxTransactions = new LinkedList<OfxTransaction>();
   private boolean m_Saving = false;
@@ -46,11 +46,11 @@ public class OfxTransactions {
    * Load ING Transactions and initialize OFX Transactions and meta information.
    */
   public void load() {
-//    SnsTransaction l_transactions = new SnsTransactions(m_file);
-//    l_transactions.load();
-//    m_OfxTransactions = l_transactions.getOfxTransactions();
-//    m_metainfo = l_transactions.getOfxMetaInfo();
-//    m_Saving = l_transactions.isSavingCsvFile();
+    SnsTransactions l_transactions = new SnsTransactions(m_file);
+    l_transactions.load();
+    m_OfxTransactions = l_transactions.getOfxTransactions();
+    m_metainfo = l_transactions.getOfxMetaInfo();
+    m_Saving = l_transactions.isSavingCsvFile();
   }
 
   /**

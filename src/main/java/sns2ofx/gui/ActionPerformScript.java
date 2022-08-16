@@ -59,13 +59,13 @@ public class ActionPerformScript extends SwingWorker<Void, String> implements My
       } else {
         l_ingtrns.load();
       }
+
+      l_ingtrns.CreateOfxDocument();
       /*
        * if (m_OutputFile.equalsIgnoreCase("Output filename")) {
        * l_ingtrns.CreateOfxDocument(); } else {
-       * l_ingtrns.CreateOfxDocument(m_OutputFile); }
+       * l_ingtrns.CreateOfxDocument(m_OutputFile); } l_ingtrns.CreateOfxDocument();
        */
-      l_ingtrns.CreateOfxDocument();
-
     }
     LOGGER.log(Level.INFO, "End conversion.");
 
