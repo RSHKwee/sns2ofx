@@ -29,8 +29,8 @@ import camt053parser.model.EntryDetails1;
 import camt053parser.model.EntryTransaction2;
 import camt053parser.model.ReportEntry2;
 
+import library.DateToNumeric;
 import snsLibrary.SnsTransaction;
-
 import ofxLibrary.OfxMetaInfo;
 import ofxLibrary.OfxTransaction;
 
@@ -69,17 +69,22 @@ public class SnsTransactions {
       List<AccountStatement2> accountStatement2List = camt053Document.getBkToCstmrStmt().getStmt();
       for (AccountStatement2 accountStatement2 : accountStatement2List) {
         // String l_BankStatSeqNr = accountStatement2.getElctrncSeqNb().toString();
-        String l_IBANNr = accountStatement2.getAcct().getId().getIBAN();
+        Level l_Level = Level.INFO;
 
+        String l_IBANNr = accountStatement2.getAcct().getId().getIBAN();
         List<CashBalance3> l_balances = accountStatement2.getBal();
         l_balances.forEach(ll_balance -> {
           String l_balValue = ll_balance.getAmt().getValue().toString();
           Date l_balDate = ll_balance.getDt().getDt().toGregorianCalendar().getTime();
+          String ls_balDate = DateToNumeric.dateToNumeric(l_balDate);
+          OfxMetaInfo l_meta = m_metainfo.get(l_IBANNr);
+          if (null == l_meta) {
+            l_meta = new OfxMetaInfo();
+          }
 
-          OfxMetaInfo l_meta = new OfxMetaInfo();
           l_meta.setAccount(l_IBANNr);
-          l_meta.setMinDate(l_balDate);
-          if (l_meta.setMaxDate(l_balDate)) {
+          l_meta.setMinDate(ls_balDate);
+          if (l_meta.setMaxDate(ls_balDate)) {
             l_meta.setBalanceAfterTransaction(l_balValue);
           }
           m_metainfo.put(l_IBANNr, l_meta);
@@ -93,10 +98,15 @@ public class SnsTransactions {
           if (CreditDebitCode.CRDT == reportEntry2.getCdtDbtInd()) {
             l_ofxtrans.setTrntype("Af");
           }
-          l_ofxtrans.setDtposted(reportEntry2.getBookgDt().getDt().toGregorianCalendar().getTime().toString());
 
-          System.out.println("Credit or debit: " + reportEntry2.getCdtDbtInd());
-          System.out.println("Booking date: " + reportEntry2.getBookgDt().getDt().toGregorianCalendar().getTime());
+          Date l_tranDate = reportEntry2.getBookgDt().getDt().toGregorianCalendar().getTime();
+          String ls_tranDate = DateToNumeric.dateToNumeric(l_tranDate);
+
+          l_ofxtrans.setDtposted(ls_tranDate);
+
+          LOGGER.log(l_Level, "Credit or debit: " + reportEntry2.getCdtDbtInd());
+          LOGGER.log(l_Level, "Booking date: " + reportEntry2.getBookgDt().getDt().toGregorianCalendar().getTime()
+              + " (" + ls_tranDate + ")");
 
           List<EntryDetails1> entryDetails1List = reportEntry2.getNtryDtls();
 
@@ -109,68 +119,76 @@ public class SnsTransactions {
                 if (CreditDebitCode.DBIT == reportEntry2.getCdtDbtInd()) {
                   // Outgoing (debit) payments, show recipient (creditors) information, money was
                   // transferred from the bank (debtor) to a client (creditor)
-
-                  String l_name = "";
+                  // Outgoing (debit) payments, show recipient (creditors) information, money was
+                  // transferred from the bank (debtor) to a client (creditor)
                   if (entryDetails1.getTxDtls().get(0).getRltdPties() != null) {
-                    l_name = entryDetails1.getTxDtls().get(0).getRltdPties().getCdtr().getNm();
-                    System.out
-                        .println("Creditor name: " + entryDetails1.getTxDtls().get(0).getRltdPties().getCdtr().getNm());
+                    LOGGER.log(l_Level,
+                        "Creditor name: " + entryDetails1.getTxDtls().get(0).getRltdPties().getCdtr().getNm());
+                    LOGGER.log(l_Level, "Creditor IBAN: "
+                        + entryDetails1.getTxDtls().get(0).getRltdPties().getCdtrAcct().getId().getIBAN());
+
+                    l_ofxtrans.setName(entryDetails1.getTxDtls().get(0).getRltdPties().getCdtr().getNm());
+                    l_ofxtrans
+                        .setAccountto(entryDetails1.getTxDtls().get(0).getRltdPties().getCdtrAcct().getId().getIBAN());
+                  } else {
+                    l_ofxtrans.setName("");
+                    l_ofxtrans.setAccountto("");
                   }
-                  l_ofxtrans.setName(l_name);
-                  System.out.println("Creditor IBAN: "
-                      + entryDetails1.getTxDtls().get(0).getRltdPties().getCdtrAcct().getId().getIBAN());
 
-                  System.out.println("Creditor remittance information (payment description): " + entryDetails1
+                  LOGGER.log(l_Level, "Creditor remittance information (payment description): " + entryDetails1
                       .getTxDtls().get(0).getRmtInf().getUstrd().stream().collect(Collectors.joining(",")));
-                  System.out.println(
-                      "Report amount: " + reportEntry2.getAmt().getValue() + " " + reportEntry2.getAmt().getCcy());
+                  if (entryDetails1.getTxDtls().get(0).getAmtDtls() != null) {
+                    LOGGER.log(l_Level, "Creditor amount: "
+                        + entryDetails1.getTxDtls().get(0).getAmtDtls().getTxAmt().getAmt().getValue());
+                  }
 
+                  LOGGER.log(l_Level,
+                      "Report amount: " + reportEntry2.getAmt().getValue() + " " + reportEntry2.getAmt().getCcy());
                   l_ofxtrans.setTrnamt(reportEntry2.getAmt().getValue().toString());
 
-                  l_ofxtrans.setAccountto(l_IBANNr);
                   l_ofxtrans.setTrntype("bij");
+
+                  LOGGER.log(l_Level, "Creditor remittance information (payment description): " + entryDetails1
+                      .getTxDtls().get(0).getRmtInf().getUstrd().stream().collect(Collectors.joining(",")));
+
                   l_ofxtrans.setMemo(entryDetails1.getTxDtls().get(0).getRmtInf().getUstrd().stream()
                       .collect(Collectors.joining(",")));
-                  m_OfxTransactions.add(l_ofxtrans);
                 }
                 if (CreditDebitCode.CRDT == reportEntry2.getCdtDbtInd()) {
                   // Incoming (credit) payments, show origin (debtor) information, money was
                   // transferred from a client (debtor) to the bank (creditor)
-                  System.out
-                      .println("Debtor name: " + entryDetails1.getTxDtls().get(0).getRltdPties().getDbtr().getNm());
-                  System.out.println("Debtor IBAN: "
-                      + entryDetails1.getTxDtls().get(0).getRltdPties().getDbtrAcct().getId().getIBAN());
-                  System.out.println("Debtor remittance information (payment description): " + entryDetails1.getTxDtls()
-                      .get(0).getRmtInf().getUstrd().stream().collect(Collectors.joining(",")));
-                  System.out.println(
+                  if (entryDetails1.getTxDtls().get(0).getRltdPties() != null) {
+                    LOGGER.log(l_Level,
+                        "Debtor name: " + entryDetails1.getTxDtls().get(0).getRltdPties().getDbtr().getNm());
+                    LOGGER.log(l_Level, "Debtor IBAN: "
+                        + entryDetails1.getTxDtls().get(0).getRltdPties().getDbtrAcct().getId().getIBAN());
+
+                    l_ofxtrans.setName(entryDetails1.getTxDtls().get(0).getRltdPties().getDbtr().getNm());
+                    l_ofxtrans
+                        .setAccountto(entryDetails1.getTxDtls().get(0).getRltdPties().getDbtrAcct().getId().getIBAN());
+                  } else {
+                    l_ofxtrans.setName("");
+                    l_ofxtrans.setAccountto("");
+                  }
+                  LOGGER.log(l_Level, "Debtor remittance information (payment description): " + entryDetails1
+                      .getTxDtls().get(0).getRmtInf().getUstrd().stream().collect(Collectors.joining(",")));
+                  LOGGER.log(l_Level,
                       "Report amount: " + reportEntry2.getAmt().getValue() + " " + reportEntry2.getAmt().getCcy());
+                  if (entryDetails1.getTxDtls().get(0).getAmtDtls() != null) {
+                    LOGGER.log(l_Level, "Debtor amount: "
+                        + entryDetails1.getTxDtls().get(0).getAmtDtls().getTxAmt().getAmt().getValue());
+                  }
 
                   l_ofxtrans.setTrnamt(reportEntry2.getAmt().getValue().toString());
-                  l_ofxtrans.setName(entryDetails1.getTxDtls().get(0).getRltdPties().getDbtr().getNm());
-                  l_ofxtrans.setAccountto(l_IBANNr);
+
                   l_ofxtrans.setTrntype("af");
                   l_ofxtrans.setMemo(entryDetails1.getTxDtls().get(0).getRmtInf().getUstrd().stream()
                       .collect(Collectors.joining(",")));
-                  m_OfxTransactions.add(l_ofxtrans);
                 }
-
-              } else {
-                // This is an entry about an outgoing batch payment
-                if (CreditDebitCode.DBIT == reportEntry2.getCdtDbtInd()) {
-                  System.out.println("Batch creditor total amount: " + entryDetails1.getBtch().getTtlAmt().getValue());
-                  for (EntryTransaction2 entryTransaction2 : entryDetails1.getTxDtls()) {
-                    // Outgoing (debit) payments, show recipient (creditor) information, money was
-                    // transferred from the bank (debtor) to a client (creditor)
-                    System.out.println("Batch creditor name: " + entryTransaction2.getRltdPties().getCdtr().getNm());
-                    System.out.println(
-                        "Batch creditor IBAN: " + entryTransaction2.getRltdPties().getCdtrAcct().getId().getIBAN());
-                    System.out.println(
-                        "Batch creditor amount: " + entryTransaction2.getAmtDtls().getTxAmt().getAmt().getValue());
-                    System.out
-                        .println("Batch creditor remittance information: " + entryTransaction2.getRmtInf().getUstrd());
-                  }
-                }
+                l_ofxtrans.setFitid(createUniqueId(l_ofxtrans));
+                m_OfxTransactions.add(l_ofxtrans);
               }
+
             } catch (Exception e) {
               System.out.println(e.getMessage());
             }
@@ -217,64 +235,6 @@ public class SnsTransactions {
    */
   public Map<String, OfxMetaInfo> getOfxMetaInfo() {
     return m_metainfo;
-  }
-
-  /**
-   * Update meta information of OFX Transactions.
-   * 
-   * @param a_OfxTransaction OFX Transaction
-   * @param a_SaldoNaMutatie Balance after transaction
-   */
-  private void updateOfxMetaInfo(OfxTransaction a_OfxTransaction, String a_SaldoNaMutatie) {
-    OfxMetaInfo l_meta = m_metainfo.get(a_OfxTransaction.getAccount());
-    try {
-      String sDtPosted = a_OfxTransaction.getDtposted();
-      l_meta.setMaxDate(sDtPosted);
-      if (l_meta.getMaxDate().equalsIgnoreCase(sDtPosted)) {
-        if (l_meta.getBalanceAfterTransaction().isBlank()) {
-          l_meta.setBalanceAfterTransaction(a_SaldoNaMutatie);
-        }
-      }
-      l_meta.setMaxDate(sDtPosted);
-      l_meta.setMinDate(sDtPosted);
-      if (m_saving && (l_meta.getPrefix().isBlank())) {
-        if (!a_OfxTransaction.getAccountto().isBlank()) {
-          l_meta.setPrefix(a_OfxTransaction.getAccountto());
-        }
-      }
-      l_meta.setMaxDate(sDtPosted);
-      l_meta.setMinDate(sDtPosted);
-
-      m_metainfo.put(a_OfxTransaction.getAccount(), l_meta);
-    } catch (Exception e) {
-    }
-  }
-
-  /**
-   * Store meta information of OFX Transactions.
-   * 
-   * @param a_OfxTransaction OFX Transaction
-   * @param a_SaldoNaMutatie Balance after transaction
-   */
-  private void createOfxMetaInfo(OfxTransaction a_OfxTransaction, String a_SaldoNaMutatie) {
-    OfxMetaInfo l_meta = new OfxMetaInfo();
-    l_meta.setAccount(a_OfxTransaction.getAccount());
-    String sDtPosted = a_OfxTransaction.getDtposted();
-    l_meta.setMaxDate(sDtPosted);
-    // if (l_meta.getMaxDate().equalsIgnoreCase(sDtPosted)) {
-    // if (l_meta.getBalanceAfterTransaction().isBlank()) {
-    l_meta.setBalanceAfterTransaction(a_SaldoNaMutatie);
-    // }
-    // }
-    l_meta.setMaxDate(sDtPosted);
-    l_meta.setMinDate(sDtPosted);
-
-    if (l_meta.getPrefix().isBlank()) {
-      if (!a_OfxTransaction.getAccountto().isBlank()) {
-        l_meta.setPrefix(a_OfxTransaction.getAccountto());
-      }
-    }
-    m_metainfo.put(a_OfxTransaction.getAccount(), l_meta);
   }
 
   /**

@@ -19,7 +19,6 @@ import java.util.logging.Logger;
 
 import ofxLibrary.OfxMetaInfo;
 import ofxLibrary.OfxTransaction;
-import snsLibrary.SnsTransaction;
 
 public class OfxTransactions {
   private static final Logger LOGGER = Logger.getLogger(Class.class.getName());

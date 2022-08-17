@@ -1,7 +1,5 @@
 package ofxLibrary;
 
-import java.util.Calendar;
-import java.util.Date;
 /**
  * Meta information storage for an account and its transactions.
  * <br>
@@ -120,34 +118,6 @@ public class OfxMetaInfo {
       bstat = true;
     }
     return bstat;
-  }
-
-  public boolean setMaxDate(Date maxDate) {
-    boolean bstat = false;
-    int Year = 0;
-    int Month = 0;
-    int Day = 0;
-    Calendar cal = Calendar.getInstance();
-    cal.setTime(maxDate);
-    Year = cal.get(Year);
-    Month = cal.get(Month);
-    Day = cal.get(Day);
-    String lsDate = Integer.toString(Year) + Integer.toString(Month) + Integer.toString(Day);
-    bstat = setMaxDate(lsDate);
-    return bstat;
-  }
-
-  public void setMinDate(Date minDate) {
-    int Year = 0;
-    int Month = 0;
-    int Day = 0;
-    Calendar cal = Calendar.getInstance();
-    cal.setTime(minDate);
-    Year = cal.get(Year);
-    Month = cal.get(Month);
-    Day = cal.get(Day);
-    String lsDate = Integer.toString(Year) + Integer.toString(Month) + Integer.toString(Day);
-    setMinDate(lsDate);
   }
 
   public void setBalanceAfterTransaction(String balanceAfterTransaction) {

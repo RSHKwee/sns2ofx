@@ -55,30 +55,38 @@ public class importCamt053 {
                 if (CreditDebitCode.DBIT == reportEntry2.getCdtDbtInd()) {
                   // Outgoing (debit) payments, show recipient (creditors) information, money was
                   // transferred from the bank (debtor) to a client (creditor)
-                  System.out
-                      .println("Creditor name: " + entryDetails1.getTxDtls().get(0).getRltdPties().getCdtr().getNm());
-                  System.out.println("Creditor IBAN: "
-                      + entryDetails1.getTxDtls().get(0).getRltdPties().getCdtrAcct().getId().getIBAN());
+                  if (entryDetails1.getTxDtls().get(0).getRltdPties() != null) {
+                    System.out
+                        .println("Creditor name: " + entryDetails1.getTxDtls().get(0).getRltdPties().getCdtr().getNm());
+                    System.out.println("Creditor IBAN: "
+                        + entryDetails1.getTxDtls().get(0).getRltdPties().getCdtrAcct().getId().getIBAN());
+                  }
                   System.out.println("Creditor remittance information (payment description): " + entryDetails1
                       .getTxDtls().get(0).getRmtInf().getUstrd().stream().collect(Collectors.joining(",")));
                   System.out.println(
                       "Report amount: " + reportEntry2.getAmt().getValue() + " " + reportEntry2.getAmt().getCcy());
-                  System.out.println("Creditor amount: "
-                      + entryDetails1.getTxDtls().get(0).getAmtDtls().getTxAmt().getAmt().getValue());
+                  if (entryDetails1.getTxDtls().get(0).getAmtDtls() != null) {
+                    System.out.println("Creditor amount: "
+                        + entryDetails1.getTxDtls().get(0).getAmtDtls().getTxAmt().getAmt().getValue());
+                  }
                 }
                 if (CreditDebitCode.CRDT == reportEntry2.getCdtDbtInd()) {
                   // Incoming (credit) payments, show origin (debtor) information, money was
                   // transferred from a client (debtor) to the bank (creditor)
-                  System.out
-                      .println("Debtor name: " + entryDetails1.getTxDtls().get(0).getRltdPties().getDbtr().getNm());
-                  System.out.println("Debtor IBAN: "
-                      + entryDetails1.getTxDtls().get(0).getRltdPties().getDbtrAcct().getId().getIBAN());
+                  if (entryDetails1.getTxDtls().get(0).getRltdPties() != null) {
+                    System.out
+                        .println("Debtor name: " + entryDetails1.getTxDtls().get(0).getRltdPties().getDbtr().getNm());
+                    System.out.println("Debtor IBAN: "
+                        + entryDetails1.getTxDtls().get(0).getRltdPties().getDbtrAcct().getId().getIBAN());
+                  }
                   System.out.println("Debtor remittance information (payment description): " + entryDetails1.getTxDtls()
                       .get(0).getRmtInf().getUstrd().stream().collect(Collectors.joining(",")));
                   System.out.println(
                       "Report amount: " + reportEntry2.getAmt().getValue() + " " + reportEntry2.getAmt().getCcy());
-                  System.out.println(
-                      "Debtor amount: " + entryDetails1.getTxDtls().get(0).getAmtDtls().getTxAmt().getAmt().getValue());
+                  if (entryDetails1.getTxDtls().get(0).getAmtDtls() != null) {
+                    System.out.println("Debtor amount: "
+                        + entryDetails1.getTxDtls().get(0).getAmtDtls().getTxAmt().getAmt().getValue());
+                  }
                 }
               } else {
                 // This is an entry about an outgoing batch payment
@@ -87,11 +95,15 @@ public class importCamt053 {
                   for (EntryTransaction2 entryTransaction2 : entryDetails1.getTxDtls()) {
                     // Outgoing (debit) payments, show recipient (creditor) information, money was
                     // transferred from the bank (debtor) to a client (creditor)
-                    System.out.println("Batch creditor name: " + entryTransaction2.getRltdPties().getCdtr().getNm());
-                    System.out.println(
-                        "Batch creditor IBAN: " + entryTransaction2.getRltdPties().getCdtrAcct().getId().getIBAN());
-                    System.out.println(
-                        "Batch creditor amount: " + entryTransaction2.getAmtDtls().getTxAmt().getAmt().getValue());
+                    if (entryDetails1.getTxDtls().get(0).getRltdPties() != null) {
+                      System.out.println("Batch creditor name: " + entryTransaction2.getRltdPties().getCdtr().getNm());
+                      System.out.println(
+                          "Batch creditor IBAN: " + entryTransaction2.getRltdPties().getCdtrAcct().getId().getIBAN());
+                    }
+                    if (entryDetails1.getTxDtls().get(0).getAmtDtls() != null) {
+                      System.out.println(
+                          "Batch creditor amount: " + entryTransaction2.getAmtDtls().getTxAmt().getAmt().getValue());
+                    }
                     System.out
                         .println("Batch creditor remittance information: " + entryTransaction2.getRmtInf().getUstrd());
                   }
