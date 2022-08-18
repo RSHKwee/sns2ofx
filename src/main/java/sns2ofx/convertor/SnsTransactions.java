@@ -68,7 +68,7 @@ public class SnsTransactions {
       List<AccountStatement2> accountStatement2List = camt053Document.getBkToCstmrStmt().getStmt();
       for (AccountStatement2 accountStatement2 : accountStatement2List) {
         // String l_BankStatSeqNr = accountStatement2.getElctrncSeqNb().toString();
-        Level l_Level = Level.INFO;
+        Level l_Level = Level.FINEST;
 
         String l_IBANNr = accountStatement2.getAcct().getId().getIBAN();
         List<CashBalance3> l_balances = accountStatement2.getBal();
@@ -153,7 +153,7 @@ public class SnsTransactions {
 
                   String l_memo = entryDetails1.getTxDtls().get(0).getRmtInf().getUstrd().stream()
                       .collect(Collectors.joining(","));
-                  l_memo = l_memo.replace("  ", " ");
+                  l_memo = l_memo.replaceAll("( )+", " ");
                   l_ofxtrans.setMemo(l_memo);
                 }
                 if (CreditDebitCode.CRDT == reportEntry2.getCdtDbtInd()) {
@@ -186,7 +186,7 @@ public class SnsTransactions {
 
                   String l_memo = entryDetails1.getTxDtls().get(0).getRmtInf().getUstrd().stream()
                       .collect(Collectors.joining(","));
-                  l_memo = l_memo.replace("  ", " ");
+                  l_memo = l_memo.replaceAll("( )+", " ");
                   l_ofxtrans.setMemo(l_memo);
                 }
                 l_ofxtrans.setFitid(createUniqueId(l_ofxtrans));
