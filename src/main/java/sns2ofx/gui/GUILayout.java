@@ -318,7 +318,7 @@ public class GUILayout extends JPanel implements ItemListener {
 
           for (int i = 0; i < files.length; i++) {
             file = files[i];
-            LOGGER.log(Level.INFO, "CSV File: " + file.getAbsolutePath());
+            LOGGER.log(Level.INFO, "XML File: " + file.getAbsolutePath());
             lblCSVFile.setText(file.getAbsolutePath());
             l_filename = l_filename + library.FileUtils.getFileNameWithoutExtension(file) + ".ofx" + "; ";
           }

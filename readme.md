@@ -1,6 +1,6 @@
 # Introduction
 
-The intent of this (java) application  is to convert sns (www.sns.nl) csv files to ofx files 
+The intent of this (java) application is to convert sns (www.snsbank.nl) CAMT053 xml files to ofx files 
 that can be read by a program like GnuCash (www.gucash.org).
 
 The origin is a Python script which can be found on Github:  https://github.com/chmistry/sns2ofx/releases.
@@ -19,10 +19,7 @@ When runnsns the application (Windows excutable or Java jar-file) the followsns 
 
 ![Main screen sns2ofx](./sns2ofxMain.PNG)
 
-Button _CSV File_: an SNS CSV file can be choosen.
-- The application recognize a comma or semicolon separated input file.
-- The content "normal" or savsns transactions.
-The checkbox "Only interest transaction" is used only for a CSV file with savsns transactions.
+Button _XML File(s)_: an SNS XML file can be choosen.
 
 Button _Output folder_: Point to the directory where the generated OFX-file(s) are stored. 
 A proposal for the "Output filename" is made, this can be changed.
