@@ -8,7 +8,7 @@ package sns2ofx.convertor;
  */
 import java.io.File;
 import java.io.FileInputStream;
-import java.math.BigDecimal;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -26,7 +26,6 @@ import camt053parser.model.CashBalance3;
 import camt053parser.model.CreditDebitCode;
 import camt053parser.model.Document;
 import camt053parser.model.EntryDetails1;
-import camt053parser.model.EntryTransaction2;
 import camt053parser.model.ReportEntry2;
 
 import library.DateToNumeric;
@@ -49,14 +48,14 @@ public class SnsTransactions {
   /**
    * Constructor.
    * 
-   * @param a_file CSV File with ING transactions
+   * @param a_file XML File with SNS transactions
    */
   public SnsTransactions(File a_file) {
     m_File = a_file.getAbsolutePath();
   }
 
   /**
-   * Determine type of ING transactions (saving or normal). <br>
+   * Determine type of SNS transactions (saving or normal). <br>
    * Process the transactions and convert them to OFX transactions.
    */
   public void load() {
@@ -92,11 +91,12 @@ public class SnsTransactions {
 
         for (ReportEntry2 reportEntry2 : accountStatement2.getNtry()) {
           OfxTransaction l_ofxtrans = new OfxTransaction();
+          l_ofxtrans.setAccount(l_IBANNr);
           if (CreditDebitCode.DBIT == reportEntry2.getCdtDbtInd()) {
-            l_ofxtrans.setTrntype("Bij");
+            l_ofxtrans.setTrntype("CREDIT");
           }
           if (CreditDebitCode.CRDT == reportEntry2.getCdtDbtInd()) {
-            l_ofxtrans.setTrntype("Af");
+            l_ofxtrans.setTrntype("DEBIT");
           }
 
           Date l_tranDate = reportEntry2.getBookgDt().getDt().toGregorianCalendar().getTime();
@@ -144,15 +144,17 @@ public class SnsTransactions {
 
                   LOGGER.log(l_Level,
                       "Report amount: " + reportEntry2.getAmt().getValue() + " " + reportEntry2.getAmt().getCcy());
-                  l_ofxtrans.setTrnamt(reportEntry2.getAmt().getValue().toString());
 
-                  l_ofxtrans.setTrntype("bij");
+                  l_ofxtrans.setTrnamt(reportEntry2.getAmt().getValue().toString());
+                  l_ofxtrans.setTrntype("CREDIT");
 
                   LOGGER.log(l_Level, "Creditor remittance information (payment description): " + entryDetails1
                       .getTxDtls().get(0).getRmtInf().getUstrd().stream().collect(Collectors.joining(",")));
 
-                  l_ofxtrans.setMemo(entryDetails1.getTxDtls().get(0).getRmtInf().getUstrd().stream()
-                      .collect(Collectors.joining(",")));
+                  String l_memo = entryDetails1.getTxDtls().get(0).getRmtInf().getUstrd().stream()
+                      .collect(Collectors.joining(","));
+                  l_memo = l_memo.replace("  ", " ");
+                  l_ofxtrans.setMemo(l_memo);
                 }
                 if (CreditDebitCode.CRDT == reportEntry2.getCdtDbtInd()) {
                   // Incoming (credit) payments, show origin (debtor) information, money was
@@ -180,15 +182,16 @@ public class SnsTransactions {
                   }
 
                   l_ofxtrans.setTrnamt(reportEntry2.getAmt().getValue().toString());
+                  l_ofxtrans.setTrntype("DEBIT");
 
-                  l_ofxtrans.setTrntype("af");
-                  l_ofxtrans.setMemo(entryDetails1.getTxDtls().get(0).getRmtInf().getUstrd().stream()
-                      .collect(Collectors.joining(",")));
+                  String l_memo = entryDetails1.getTxDtls().get(0).getRmtInf().getUstrd().stream()
+                      .collect(Collectors.joining(","));
+                  l_memo = l_memo.replace("  ", " ");
+                  l_ofxtrans.setMemo(l_memo);
                 }
                 l_ofxtrans.setFitid(createUniqueId(l_ofxtrans));
                 m_OfxTransactions.add(l_ofxtrans);
               }
-
             } catch (Exception e) {
               System.out.println(e.getMessage());
             }
