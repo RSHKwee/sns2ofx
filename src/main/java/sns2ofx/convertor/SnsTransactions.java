@@ -84,7 +84,11 @@ public class SnsTransactions {
           l_meta.setAccount(l_IBANNr);
           l_meta.setMinDate(ls_balDate);
           if (l_meta.setMaxDate(ls_balDate)) {
-            l_meta.setBalanceAfterTransaction(l_balValue);
+            if (CreditDebitCode.DBIT == ll_balance.getCdtDbtInd()) {
+              l_meta.setBalanceAfterTransaction("-" + l_balValue);
+            } else {
+              l_meta.setBalanceAfterTransaction(l_balValue);
+            }
           }
           m_metainfo.put(l_IBANNr, l_meta);
         });
