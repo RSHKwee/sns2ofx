@@ -94,6 +94,7 @@ public class SnsTransactions {
           l_ofxtrans.setAccount(l_IBANNr);
           if (CreditDebitCode.DBIT == reportEntry2.getCdtDbtInd()) {
             l_ofxtrans.setTrntype("CREDIT");
+
           }
           if (CreditDebitCode.CRDT == reportEntry2.getCdtDbtInd()) {
             l_ofxtrans.setTrntype("DEBIT");
@@ -143,9 +144,9 @@ public class SnsTransactions {
                   }
 
                   LOGGER.log(l_Level,
-                      "Report amount: " + reportEntry2.getAmt().getValue() + " " + reportEntry2.getAmt().getCcy());
+                      "Report amount: -" + reportEntry2.getAmt().getValue() + " " + reportEntry2.getAmt().getCcy());
 
-                  l_ofxtrans.setTrnamt(reportEntry2.getAmt().getValue().toString());
+                  l_ofxtrans.setTrnamt("-" + reportEntry2.getAmt().getValue().toString());
                   l_ofxtrans.setTrntype("CREDIT");
 
                   LOGGER.log(l_Level, "Creditor remittance information (payment description): " + entryDetails1
