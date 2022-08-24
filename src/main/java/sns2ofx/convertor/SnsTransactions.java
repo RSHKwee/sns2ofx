@@ -8,7 +8,7 @@ package sns2ofx.convertor;
  */
 import java.io.File;
 import java.io.FileInputStream;
-
+// import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -38,7 +38,7 @@ public class SnsTransactions {
 
   private Camt053Parser m_reader;
   private String m_File;
-  private boolean m_saving = false;
+  // private boolean m_saving = false;
   private Set<String> m_UniqueId = new LinkedHashSet<>();
 
   private List<SnsTransaction> m_Transactions;
@@ -149,7 +149,6 @@ public class SnsTransactions {
 
                   LOGGER.log(l_Level,
                       "Report amount: -" + reportEntry2.getAmt().getValue() + " " + reportEntry2.getAmt().getCcy());
-
                   l_ofxtrans.setTrnamt("-" + reportEntry2.getAmt().getValue().toString());
                   l_ofxtrans.setTrntype("CREDIT");
 
@@ -214,7 +213,7 @@ public class SnsTransactions {
    * @return True for Saving transactions
    */
   public boolean isSavingCsvFile() {
-    return m_saving;
+    return false;
   }
 
   /**

@@ -22,7 +22,7 @@ import ofxLibrary.OfxTransaction;
 
 public class OfxTransactions {
   private static final Logger LOGGER = Logger.getLogger(Class.class.getName());
-  private String C_BankCode = "SNSBNL2A";
+  private String m_BankCode = "";
 
   private List<OfxTransaction> m_OfxTransactions = new LinkedList<OfxTransaction>();
   private boolean m_Saving = false;
@@ -37,12 +37,13 @@ public class OfxTransactions {
    * 
    * @param a_file CSV file with ING transactions.
    */
-  public OfxTransactions(File a_file) {
+  public OfxTransactions(File a_file, String a_BankCode) {
     m_file = a_file;
+    m_BankCode = a_BankCode;
   }
 
   /**
-   * Load ING Transactions and initialize OFX Transactions and meta information.
+   * Load SNS Transactions and initialize OFX Transactions and meta information.
    */
   public void load() {
     SnsTransactions l_transactions = new SnsTransactions(m_file);
@@ -83,7 +84,7 @@ public class OfxTransactions {
     l_regels.add("      <STMTRS>                            <!-- Begin statement response -->");
     l_regels.add("         <CURDEF>EUR</CURDEF>");
     l_regels.add("         <BANKACCTFROM>                   <!-- Identify the account -->");
-    l_regels.add("            <BANKID>" + C_BankCode + "</BANKID>     <!-- Routing transit or other FI ID -->");
+    l_regels.add("            <BANKID>" + m_BankCode + "</BANKID>     <!-- Routing transit or other FI ID -->");
     l_regels.add("            <ACCTID>" + account + "</ACCTID>  <!-- Account number -->");
     l_regels.add("            <ACCTTYPE>CHECKING</ACCTTYPE> <!-- Account type -->");
     l_regels.add("         </BANKACCTFROM>                  <!-- End of account ID -->");

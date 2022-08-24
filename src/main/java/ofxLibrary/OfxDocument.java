@@ -24,33 +24,38 @@ public class OfxDocument {
   private File m_File;
   private String m_FilterName = "";
   private boolean m_Savings = false;
+  private String m_BankCode = "";
 
-  public OfxDocument(File a_File, String a_outputdir, boolean a_separateOfx) {
+  public OfxDocument(String a_BankCode, File a_File, String a_outputdir, boolean a_separateOfx) {
+    m_BankCode = a_BankCode;
     m_File = a_File;
     m_OutputDir = a_outputdir;
     m_separateOFX = a_separateOfx;
   }
 
-  public OfxDocument(File a_File, boolean a_separateOfx) {
+  public OfxDocument(String a_BankCode, File a_File, boolean a_separateOfx) {
+    m_BankCode = a_BankCode;
     m_File = a_File;
     m_OutputDir = a_File.getParent();
     m_separateOFX = a_separateOfx;
   }
 
-  public OfxDocument(File a_File, String a_outputdir) {
+  public OfxDocument(String a_BankCode, File a_File, String a_outputdir) {
+    m_BankCode = a_BankCode;
     m_File = a_File;
     m_OutputDir = a_outputdir;
     m_separateOFX = true;
   }
 
-  public OfxDocument(File a_File) {
+  public OfxDocument(String a_BankCode, File a_File) {
+    m_BankCode = a_BankCode;
     m_File = a_File;
     m_OutputDir = a_File.getParent();
     m_separateOFX = true;
   }
 
   public void load() {
-    OfxTransactions l_OfxTrans = new OfxTransactions(m_File);
+    OfxTransactions l_OfxTrans = new OfxTransactions(m_File, m_BankCode);
     l_OfxTrans.load();
     l_OfxTrans.OfxXmlTransactionsForAccounts();
     m_OfxAcounts = l_OfxTrans.m_OfxAcounts;
@@ -59,7 +64,7 @@ public class OfxDocument {
   }
 
   public void load(String a_FilterName) {
-    OfxTransactions l_OfxTrans = new OfxTransactions(m_File);
+    OfxTransactions l_OfxTrans = new OfxTransactions(m_File, m_BankCode);
     l_OfxTrans.load();
     l_OfxTrans.OfxXmlTransactionsForAccounts(a_FilterName);
     m_OfxAcounts = l_OfxTrans.m_OfxAcounts;
@@ -69,7 +74,7 @@ public class OfxDocument {
   }
 
   public void load(boolean a_AllInOne, String a_FilterName) {
-    OfxTransactions l_OfxTrans = new OfxTransactions(m_File);
+    OfxTransactions l_OfxTrans = new OfxTransactions(m_File, m_BankCode);
     l_OfxTrans.load();
     l_OfxTrans.OfxXmlTransactionsForAccounts(a_AllInOne, a_FilterName);
     m_OfxAcounts = l_OfxTrans.m_OfxAcounts;

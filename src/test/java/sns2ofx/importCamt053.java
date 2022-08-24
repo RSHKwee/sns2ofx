@@ -1,13 +1,12 @@
 package sns2ofx;
 
-
 import camt053parser.Camt053Parser;
 //import Camt053Parser;
 import camt053parser.model.*;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.Date;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,8 +42,6 @@ public class importCamt053 {
         for (ReportEntry2 reportEntry2 : accountStatement2.getNtry()) {
           System.out.println("Credit or debit: " + reportEntry2.getCdtDbtInd());
           System.out.println("Booking date: " + reportEntry2.getBookgDt().getDt().toGregorianCalendar().getTime());
-          Date l_balDate = reportEntry2.getBookgDt().getDt().toGregorianCalendar().getTime();
-          // String ls_Date = ;
 
           List<EntryDetails1> entryDetails1List = reportEntry2.getNtryDtls();
 
