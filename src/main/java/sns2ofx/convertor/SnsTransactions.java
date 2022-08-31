@@ -30,6 +30,7 @@ import camt053parser.model.ReportEntry2;
 
 import library.DateToNumeric;
 import snsLibrary.SnsTransaction;
+import ofxLibrary.OfxFilter;
 import ofxLibrary.OfxMetaInfo;
 import ofxLibrary.OfxTransaction;
 
@@ -38,7 +39,6 @@ public class SnsTransactions {
 
   private Camt053Parser m_reader;
   private String m_File;
-  // private boolean m_saving = false;
   private Set<String> m_UniqueId = new LinkedHashSet<>();
 
   private List<SnsTransaction> m_Transactions;
@@ -202,6 +202,10 @@ public class SnsTransactions {
           }
         }
       }
+
+      OfxFilter l_filter = new OfxFilter(m_OfxTransactions);
+      m_OfxTransactions = l_filter.Filter();
+
     } catch (Exception e) {
       LOGGER.log(Level.INFO, e.getMessage());
     }
