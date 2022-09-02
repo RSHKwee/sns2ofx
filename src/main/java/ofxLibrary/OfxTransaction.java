@@ -16,7 +16,7 @@ public class OfxTransaction extends CsvToBean<Object> {
   private String name = "";
   private String accountto = "";
   private String memo = "";
-  private OfxTransaction OfxTranPair = null;
+  private int OfxTranPair = -1;
 
   public String getAccount() {
     return account;
@@ -50,7 +50,7 @@ public class OfxTransaction extends CsvToBean<Object> {
     return memo;
   }
 
-  public OfxTransaction getOfxTranPair() {
+  public int getOfxTranPair() {
     return OfxTranPair;
   }
 
@@ -86,7 +86,7 @@ public class OfxTransaction extends CsvToBean<Object> {
     this.memo = memo;
   }
 
-  public void setOfxTranPair(OfxTransaction OfxTranPair) {
+  public void setOfxTranPair(int OfxTranPair) {
     this.OfxTranPair = OfxTranPair;
   }
 

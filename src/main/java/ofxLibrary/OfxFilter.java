@@ -31,7 +31,7 @@ public class OfxFilter {
      * String name = ""; private String accountto = ""; private String memo = "";
      */
     boolean l_bstat = false;
-    if ((null == a_tran2.getOfxTranPair()) && (null == a_tran1.getOfxTranPair())) {
+    if ((-1 == a_tran2.getOfxTranPair()) && (-1 == a_tran1.getOfxTranPair())) {
       l_bstat = (a_tran1.getAccount().equalsIgnoreCase(a_tran2.getAccountto()));
       if (l_bstat) {
         LOGGER.log(Level.FINEST, "Account.");
@@ -46,6 +46,11 @@ public class OfxFilter {
     return l_bstat;
   }
 
+  /**
+   * Filter transactions and search for pairs.
+   * 
+   * @return List of OFX Transactions.
+   */
   public List<OfxTransaction> Filter() {
     for (int i = 0; i < m_OfxTransactions.size(); i++) {
       OfxTransaction l_OfxTransaction1 = m_OfxTransactions.get(i);
@@ -58,12 +63,12 @@ public class OfxFilter {
           String fitid1 = l_OfxTransaction1.getFitid();
           l_OfxTransaction2.setFitid(fitid1);
 
-          l_OfxTransaction2.setOfxTranPair(l_OfxTransaction1);
+          l_OfxTransaction2.setOfxTranPair(i);
           m_OfxTransactions.set(j, l_OfxTransaction2);
 
-          l_OfxTransaction1.setOfxTranPair(l_OfxTransaction2);
+          l_OfxTransaction1.setOfxTranPair(j);
           m_OfxTransactions.set(i, l_OfxTransaction1);
-          LOGGER.log(Level.INFO, "Fit id adjusted.");
+          LOGGER.log(Level.FINE, "Fit id adjusted.");
         }
         j++;
       }

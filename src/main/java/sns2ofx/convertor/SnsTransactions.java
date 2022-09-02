@@ -159,6 +159,10 @@ public class SnsTransactions {
                       .collect(Collectors.joining(","));
                   l_memo = l_memo.replaceAll("( )+", " ");
                   l_ofxtrans.setMemo(l_memo);
+
+                  if (l_ofxtrans.getName().isBlank()) {
+                    l_ofxtrans.setName(l_memo);
+                  }
                 }
                 if (CreditDebitCode.CRDT == reportEntry2.getCdtDbtInd()) {
                   // Incoming (credit) payments, show origin (debtor) information, money was
@@ -192,17 +196,20 @@ public class SnsTransactions {
                       .collect(Collectors.joining(","));
                   l_memo = l_memo.replaceAll("( )+", " ");
                   l_ofxtrans.setMemo(l_memo);
+
+                  if (l_ofxtrans.getName().isBlank()) {
+                    l_ofxtrans.setName(l_memo);
+                  }
                 }
                 l_ofxtrans.setFitid(createUniqueId(l_ofxtrans));
                 m_OfxTransactions.add(l_ofxtrans);
               }
             } catch (Exception e) {
-              System.out.println(e.getMessage());
+              LOGGER.log(Level.INFO, e.getMessage());
             }
           }
         }
       }
-
       OfxFilter l_filter = new OfxFilter(m_OfxTransactions);
       m_OfxTransactions = l_filter.Filter();
 
