@@ -30,7 +30,7 @@ import camt053parser.model.ReportEntry2;
 
 import library.DateToNumeric;
 import snsLibrary.SnsTransaction;
-import ofxLibrary.OfxFilter;
+import ofxLibrary.OfxPairTransaction;
 import ofxLibrary.OfxMetaInfo;
 import ofxLibrary.OfxTransaction;
 
@@ -210,8 +210,8 @@ public class SnsTransactions {
           }
         }
       }
-      OfxFilter l_filter = new OfxFilter(m_OfxTransactions);
-      m_OfxTransactions = l_filter.Filter();
+      OfxPairTransaction l_filter = new OfxPairTransaction(m_OfxTransactions);
+      m_OfxTransactions = l_filter.pair();
 
     } catch (Exception e) {
       LOGGER.log(Level.INFO, e.getMessage());
