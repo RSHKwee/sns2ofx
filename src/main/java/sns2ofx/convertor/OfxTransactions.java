@@ -17,15 +17,16 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import ofxLibrary.OfxFilter;
 import ofxLibrary.OfxMetaInfo;
 import ofxLibrary.OfxTransaction;
 
 public class OfxTransactions {
   private static final Logger LOGGER = Logger.getLogger(Class.class.getName());
   private String m_BankCode = "";
+  private OfxFilter m_OfxFilter;
 
   private List<OfxTransaction> m_OfxTransactions = new LinkedList<OfxTransaction>();
-  private boolean m_Saving = false;
 
   public Map<String, OfxMetaInfo> m_metainfo = new HashMap<String, OfxMetaInfo>();
   public Map<String, ArrayList<String>> m_OfxAcounts = new LinkedHashMap<String, ArrayList<String>>();
@@ -42,6 +43,10 @@ public class OfxTransactions {
     m_BankCode = a_BankCode;
   }
 
+  public void setOfxFilter(OfxFilter a_OfxFilter) {
+    m_OfxFilter = a_OfxFilter;
+  }
+
   /**
    * Load SNS Transactions and initialize OFX Transactions and meta information.
    */
@@ -50,7 +55,6 @@ public class OfxTransactions {
     l_transactions.load();
     m_OfxTransactions = l_transactions.getOfxTransactions();
     m_metainfo = l_transactions.getOfxMetaInfo();
-    m_Saving = l_transactions.isSavingCsvFile();
   }
 
   /**
@@ -120,10 +124,6 @@ public class OfxTransactions {
     OfxXmlTransactionsForAccounts(false, "");
   }
 
-  public boolean isSavings() {
-    return m_Saving;
-  }
-
   /**
    * 
    * @param a_FilterName
@@ -161,15 +161,7 @@ public class OfxTransactions {
       m_OfxTransactions.forEach(transaction -> {
         if (a_AllInOne || (transaction.getAccount().equalsIgnoreCase(account))) {
           ArrayList<String> l_regelstrans = new ArrayList<String>();
-          if (m_Saving) {
-            if ((transaction.getName().equalsIgnoreCase(a_FilterName)) || a_FilterName.isBlank()) {
-              l_regelstrans = transaction.OfxXmlTransaction();
-              ArrayList<String> prevregels = m_OfxAcounts.get(account);
-              prevregels.addAll(l_regelstrans);
-              m_OfxAcounts.put(account, prevregels);
-              m_NumberOfTransactions++;
-            }
-          } else {
+          if (!m_OfxFilter.filter(transaction)) {
             l_regelstrans = transaction.OfxXmlTransaction();
             ArrayList<String> prevregels = m_OfxAcounts.get(account);
             prevregels.addAll(l_regelstrans);

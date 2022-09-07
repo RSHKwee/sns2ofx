@@ -1,9 +1,9 @@
 package ofxLibrary;
 
-import java.util.logging.Logger;
+// import java.util.logging.Logger;
 
 public class OfxFilter {
-  private static final Logger LOGGER = Logger.getLogger(Class.class.getName());
+  // private static final Logger LOGGER = Logger.getLogger(Class.class.getName());
   private String m_FilterAccounts = "";
   private String m_FilterMemo = "";
 
@@ -18,13 +18,18 @@ public class OfxFilter {
 
   public boolean filterAccountTo(OfxTransaction a_transaction) {
     boolean bstat = false;
-    bstat = m_FilterAccounts.contains(a_transaction.getAccountto());
+    if (!m_FilterAccounts.isBlank()) {
+      bstat = m_FilterAccounts.toUpperCase().contains(a_transaction.getAccountto().toUpperCase());
+    }
     return bstat;
   }
 
   public boolean filterMemo(OfxTransaction a_transaction) {
     boolean bstat = false;
-    bstat = a_transaction.getMemo().contains(m_FilterMemo) || a_transaction.getName().contains(m_FilterMemo);
+    if (!m_FilterMemo.isBlank()) {
+      bstat = a_transaction.getMemo().toUpperCase().contains(m_FilterMemo.toUpperCase())
+          || a_transaction.getName().toUpperCase().contains(m_FilterMemo.toUpperCase());
+    }
     return bstat;
   }
 

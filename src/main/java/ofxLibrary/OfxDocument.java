@@ -23,7 +23,6 @@ public class OfxDocument {
   private boolean m_separateOFX = true;
   private File m_File;
   private String m_FilterName = "";
-  private boolean m_Savings = false;
   private String m_BankCode = "";
 
   public OfxDocument(String a_BankCode, File a_File, String a_outputdir, boolean a_separateOfx) {
@@ -60,7 +59,6 @@ public class OfxDocument {
     l_OfxTrans.OfxXmlTransactionsForAccounts();
     m_OfxAcounts = l_OfxTrans.m_OfxAcounts;
     m_metainfo = l_OfxTrans.m_metainfo;
-    m_Savings = l_OfxTrans.isSavings();
   }
 
   public void load(String a_FilterName) {
@@ -70,7 +68,6 @@ public class OfxDocument {
     m_OfxAcounts = l_OfxTrans.m_OfxAcounts;
     m_metainfo = l_OfxTrans.m_metainfo;
     m_FilterName = a_FilterName;
-    m_Savings = l_OfxTrans.isSavings();
   }
 
   public void load(boolean a_AllInOne, String a_FilterName) {
@@ -80,7 +77,6 @@ public class OfxDocument {
     m_OfxAcounts = l_OfxTrans.m_OfxAcounts;
     m_metainfo = l_OfxTrans.m_metainfo;
     m_FilterName = a_FilterName;
-    m_Savings = l_OfxTrans.isSavings();
   }
 
   private ArrayList<String> OfxXmlHeader() {
@@ -91,20 +87,20 @@ public class OfxDocument {
     ArrayList<String> l_regels = new ArrayList<String>();
     l_regels.add("<OFX>");
     l_regels.add("  <SIGNONMSGSRSV1>");
-    l_regels.add("    <SONRS>                            <!-- Begin signon -->");
+    l_regels.add("    <SONRS>                           <!-- Begin signon -->");
     l_regels.add("      <STATUS>                        <!-- Begin status aggregate -->");
     l_regels.add("         <CODE>0</CODE>               <!-- OK -->");
     l_regels.add("         <SEVERITY>INFO</SEVERITY>");
     l_regels.add("      </STATUS>");
-    l_regels.add("      <DTSERVER>" + datestr + "</DTSERVER>   <!-- Oct. 29, 1999, 10:10:03 am -->");
-    l_regels.add("      <LANGUAGE>ENG</LANGUAGE>        <!-- Language used in response -->");
-    l_regels.add("      <DTPROFUP>" + datestr + "</DTPROFUP>   <!-- Last update to profile-->");
-    l_regels.add("      <DTACCTUP>" + datestr + "</DTACCTUP>   <!-- Last account update -->");
+    l_regels.add("      <DTSERVER>" + datestr + "</DTSERVER>  <!-- Oct. 29, 1999, 10:10:03 am -->");
+    l_regels.add("      <LANGUAGE>ENG</LANGUAGE>            <!-- Language used in response -->");
+    l_regels.add("      <DTPROFUP>" + datestr + "</DTPROFUP>  <!-- Last update to profile-->");
+    l_regels.add("      <DTACCTUP>" + datestr + "</DTACCTUP>  <!-- Last account update -->");
     l_regels.add("      <FI>                            <!-- ID of receiving institution -->");
     l_regels.add("         <ORG>NCH</ORG>               <!-- Name of ID owner -->");
     l_regels.add("         <FID>1001</FID>              <!-- Actual ID -->");
     l_regels.add("      </FI>");
-    l_regels.add("    </SONRS>                           <!-- End of signon -->");
+    l_regels.add("    </SONRS>                          <!-- End of signon -->");
     l_regels.add("  </SIGNONMSGSRSV1>");
     l_regels.add("  <BANKMSGSRSV1>");
     l_regels.add("   <STMTTRNRS>                        <!-- Begin response -->");
@@ -149,7 +145,7 @@ public class OfxDocument {
         OfxMetaInfo l_info = m_metainfo.get(account);
         String l_prefix = l_info.getPrefix();
         String l_filename = "";
-        if (!l_prefix.isBlank() && m_Savings) {
+        if (!l_prefix.isBlank()) {
           l_filename = m_OutputDir + "\\" + String.join("_", l_prefix, account);
           if (!m_FilterName.isBlank()) {
             l_filename = String.join("_", l_filename, m_FilterName);
