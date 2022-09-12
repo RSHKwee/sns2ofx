@@ -8,7 +8,7 @@ package sns2ofx.convertor;
  */
 import java.io.File;
 import java.io.FileInputStream;
-
+// import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -30,6 +30,7 @@ import camt053parser.model.ReportEntry2;
 
 import library.DateToNumeric;
 import snsLibrary.SnsTransaction;
+import ofxLibrary.OfxPairTransaction;
 import ofxLibrary.OfxMetaInfo;
 import ofxLibrary.OfxTransaction;
 
@@ -38,7 +39,6 @@ public class SnsTransactions {
 
   private Camt053Parser m_reader;
   private String m_File;
-  private boolean m_saving = false;
   private Set<String> m_UniqueId = new LinkedHashSet<>();
 
   private List<SnsTransaction> m_Transactions;
@@ -84,7 +84,11 @@ public class SnsTransactions {
           l_meta.setAccount(l_IBANNr);
           l_meta.setMinDate(ls_balDate);
           if (l_meta.setMaxDate(ls_balDate)) {
-            l_meta.setBalanceAfterTransaction(l_balValue);
+            if (CreditDebitCode.DBIT == ll_balance.getCdtDbtInd()) {
+              l_meta.setBalanceAfterTransaction("-" + l_balValue);
+            } else {
+              l_meta.setBalanceAfterTransaction(l_balValue);
+            }
           }
           m_metainfo.put(l_IBANNr, l_meta);
         });
@@ -145,7 +149,6 @@ public class SnsTransactions {
 
                   LOGGER.log(l_Level,
                       "Report amount: -" + reportEntry2.getAmt().getValue() + " " + reportEntry2.getAmt().getCcy());
-
                   l_ofxtrans.setTrnamt("-" + reportEntry2.getAmt().getValue().toString());
                   l_ofxtrans.setTrntype("CREDIT");
 
@@ -156,6 +159,10 @@ public class SnsTransactions {
                       .collect(Collectors.joining(","));
                   l_memo = l_memo.replaceAll("( )+", " ");
                   l_ofxtrans.setMemo(l_memo);
+
+                  if (l_ofxtrans.getName().isBlank()) {
+                    l_ofxtrans.setName(l_memo);
+                  }
                 }
                 if (CreditDebitCode.CRDT == reportEntry2.getCdtDbtInd()) {
                   // Incoming (credit) payments, show origin (debtor) information, money was
@@ -189,16 +196,23 @@ public class SnsTransactions {
                       .collect(Collectors.joining(","));
                   l_memo = l_memo.replaceAll("( )+", " ");
                   l_ofxtrans.setMemo(l_memo);
+
+                  if (l_ofxtrans.getName().isBlank()) {
+                    l_ofxtrans.setName(l_memo);
+                  }
                 }
                 l_ofxtrans.setFitid(createUniqueId(l_ofxtrans));
                 m_OfxTransactions.add(l_ofxtrans);
               }
             } catch (Exception e) {
-              System.out.println(e.getMessage());
+              LOGGER.log(Level.INFO, e.getMessage());
             }
           }
         }
       }
+      OfxPairTransaction l_filter = new OfxPairTransaction(m_OfxTransactions);
+      m_OfxTransactions = l_filter.pair();
+
     } catch (Exception e) {
       LOGGER.log(Level.INFO, e.getMessage());
     }
@@ -210,7 +224,7 @@ public class SnsTransactions {
    * @return True for Saving transactions
    */
   public boolean isSavingCsvFile() {
-    return m_saving;
+    return false;
   }
 
   /**
