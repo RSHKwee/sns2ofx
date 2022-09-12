@@ -25,14 +25,9 @@ public class OfxPairTransaction {
    * @return
    */
   private boolean checkTrans(OfxTransaction a_tran1, OfxTransaction a_tran2) {
-    /*
-     * private String account = ""; private String trntype = ""; private String
-     * dtposted = ""; private String trnamt = ""; private String fitid = ""; private
-     * String name = ""; private String accountto = ""; private String memo = "";
-     */
     boolean l_bstat = false;
     if ((-1 == a_tran2.getOfxTranPair()) && (-1 == a_tran1.getOfxTranPair())) {
-      l_bstat = (a_tran1.getAccount().equalsIgnoreCase(a_tran2.getAccountto()));
+      l_bstat = (a_tran1.getAccount().replaceAll("-", "").equalsIgnoreCase(a_tran2.getAccountto().replace("-", "")));
       if (l_bstat) {
         LOGGER.log(Level.FINEST, "Account.");
       }
@@ -61,6 +56,7 @@ public class OfxPairTransaction {
         bstat = checkTrans(l_OfxTransaction1, l_OfxTransaction2);
         if (bstat) {
           String fitid1 = l_OfxTransaction1.getFitid();
+          String fitid2 = l_OfxTransaction2.getFitid();
           l_OfxTransaction2.setFitid(fitid1);
 
           l_OfxTransaction2.setOfxTranPair(i);
@@ -68,7 +64,7 @@ public class OfxPairTransaction {
 
           l_OfxTransaction1.setOfxTranPair(j);
           m_OfxTransactions.set(i, l_OfxTransaction1);
-          LOGGER.log(Level.FINE, "Fit id adjusted.");
+          LOGGER.log(Level.FINE, "Fit id adjusted: " + fitid2 + " -> " + fitid1);
         }
         j++;
       }

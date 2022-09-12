@@ -24,7 +24,7 @@ import ofxLibrary.OfxTransaction;
 public class OfxTransactions {
   private static final Logger LOGGER = Logger.getLogger(Class.class.getName());
   private String m_BankCode = "";
-  private OfxFilter m_OfxFilter;
+  private OfxFilter m_OfxFilter = new OfxFilter();
 
   private List<OfxTransaction> m_OfxTransactions = new LinkedList<OfxTransaction>();
 
