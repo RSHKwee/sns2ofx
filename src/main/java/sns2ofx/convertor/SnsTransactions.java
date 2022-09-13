@@ -213,6 +213,7 @@ public class SnsTransactions {
       OfxPairTransaction l_filter = new OfxPairTransaction(m_OfxTransactions);
       m_OfxTransactions = l_filter.pair();
 
+      LOGGER.log(Level.INFO, "Transactions read: " + Integer.toString(m_OfxTransactions.size()));
     } catch (Exception e) {
       LOGGER.log(Level.INFO, e.getMessage());
     }
